@@ -15,7 +15,7 @@ const (
 
 //
 func root(w http.ResponseWriter, req *http.Request) {
-	data := []byte("Welcome.")
+	data := []byte("Welcome.\n")
 	contentLen := strconv.Itoa(len(data))
 	w.Header().Set(hdrContentLength, contentLen)
 	w.Header().Set(hdrContentType, mimeJSON)
@@ -30,6 +30,6 @@ func startServer(c *cfg) {
 	http.HandleFunc("/", root)
 
 	// start
-	log.Printf("Listing at '%s'.", c.address+":"+c.port)
-	http.ListenAndServe(c.address+":"+c.port, nil)
+	log.Printf("Listing on port '%s'.", c.port)
+	log.Fatal(http.ListenAndServe(":"+c.port, nil))
 }

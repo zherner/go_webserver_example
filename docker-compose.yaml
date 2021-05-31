@@ -4,7 +4,6 @@ services:
 
   main:
     environment:
-      GWE_ADDRESS: 'localhost'
       GWE_PORT: '8080'
     build:
       context: ./

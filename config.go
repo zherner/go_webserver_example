@@ -12,7 +12,7 @@ func config() cfg {
 	// init cfg
 	c := cfg{}
 
-	c.address, _ = os.LookupEnv("GWE_ADDRESS")
+	//c.address, _ = os.LookupEnv("GWE_ADDRESS")
 	c.port, _ = os.LookupEnv("GWE_PORT")
 	return c
 }
