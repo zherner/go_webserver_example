@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 const (
@@ -30,6 +31,13 @@ func startServer(c *cfg) {
 	http.HandleFunc("/", root)
 
 	// start
-	log.Printf("Listing on port '%s'.", c.port)
-	log.Fatal(http.ListenAndServe(":"+c.port, nil))
+	s := &http.Server{
+		Addr:           ":" + c.port,
+		Handler:        nil,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
+	log.Printf("Listing on port '%s'.", s.Addr)
+	log.Fatal(s.ListenAndServe())
 }

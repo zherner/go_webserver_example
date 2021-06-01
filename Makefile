@@ -7,9 +7,9 @@ test: ## Runs Go tests
 	go test -v
 
 build: test ## Builds the Go binary
-	go build ./...
+	docker-compose build
 
-run: ## Runs the app in container
+run: build ## Runs the app in container
 	docker-compose up
 
 clean: ## Cleanup the binary.
